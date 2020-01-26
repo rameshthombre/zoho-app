@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:email="http://www.mulesoft.org/schema/mule/email" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="baf8beb4-4b6f-4b64-af77-29f882ba2929" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="4a3f157f-20dc-4826-ae07-eb709c08a3c1" >
+		<email:smtp-connection host="smtp.gmail.com" port="587" user="ramesh.thombre@apisero.com" password="AOr@9552834556" >
+			<email:properties >
+				<email:property key="mail.smtp.starttls.enable" value="true" />
+			</email:properties>
+		</email:smtp-connection>
+	</email:smtp-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="e16dde0b-9cef-434f-8eb5-62531f77ec21" >
+		<http:request-connection host="${request.host}"/>
+	</http:request-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="073a1a2b-c7a1-4645-a560-1c277a7b801c" file="${mule}.yaml" />
+	<global-property doc:name="Global Property" doc:id="fbd1ff5f-0b3e-43da-a2dc-797a64e57d03" name="mule" value="local" />
+</mule>

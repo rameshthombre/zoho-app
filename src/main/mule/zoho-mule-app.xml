@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:email="http://www.mulesoft.org/schema/mule/email"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="zoho-mule-appFlow" doc:id="44a77052-a2ad-4d73-a214-79061b44e367" >
+		<http:listener doc:name="Listener" doc:id="e2bbfd01-e545-49c7-8022-3d168033e5d6" config-ref="HTTP_Listener_config" path="/send"/>
+		<logger level="INFO" doc:name="start Logger" doc:id="2d0c8e33-e1db-4a5b-92cc-7a2237d268d5" message="start Logger "/>
+		<http:request method="POST" doc:name="Request to zoho back end service" doc:id="e4d4f48d-53d8-443f-9a9c-45138eb49744" config-ref="HTTP_Request_configuration" path="${request.path}"/>
+		<email:send doc:name="Send" doc:id="89db3cb1-2384-4884-a222-ab94152d4ce7" config-ref="Email_SMTP" fromAddress="ramesh.thombre@apisero.com" subject="zoho meet invite">
+			<email:to-addresses >
+				<email:to-address value="ramesh.thombre@apisero.com" />
+			</email:to-addresses>
+		</email:send>
+		<logger level="INFO" doc:name="End Logger" doc:id="70f4d5db-c611-4161-b1e7-bcee83c6fef3" message="End Logger #[payload]"/>
+	</flow>
+</mule>

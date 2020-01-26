@@ -1,0 +1,7 @@
+http:
+  host: "0.0.0.0"
+  port: "8081"
+
+request:
+  host: "meeting.zoho.com"
+  path: "/api/private/json/meetings/createMeeting?apikey=ee592f7a750816a2a6d774efc71895ff&authtoken=eb3233e64415adbf37bb04a8628d1df5"
